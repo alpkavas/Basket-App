@@ -1,6 +1,14 @@
 import React from "react";
 import { useState } from "react";
-import { Container, SimpleGrid, Input, Button, Group } from "@mantine/core";
+import {
+  Container,
+  SimpleGrid,
+  Input,
+  Button,
+  Grid,
+  Drawer,
+} from "@mantine/core";
+import { IconBasketFilled } from "@tabler/icons-react";
 import CardComponent from "./components/Card";
 import ListItems from "./components/List";
 import "./App.css";
@@ -47,6 +55,7 @@ const storeItems = [
 function App() {
   let [basketItems, setbasketItems] = useState([]);
   let [search, setSearch] = useState("");
+  let [opened, setOpened] = useState(false);
 
   // Fiyat ve harfe göre filtreleme fonksiyonu küçük büyük harf duyarlı değil.
   let filteredItems = storeItems.filter(
@@ -56,18 +65,31 @@ function App() {
   );
   return (
     <Container size="sm" px="xs" className="Store">
-      <Group spacing="xs" className="headerInput" align="end">
-        <Input.Wrapper>
-          <Input
-            className="inputSearch"
-            placeholder="Search products"
-            value={search}
-            onChange={e => setSearch(e.target.value.toLowerCase())}
-          />
-        </Input.Wrapper>
-        <Button onClick={() => setSearch("")}>Clear</Button>
-      </Group>
-
+      <Grid grow gutter="xs" className="inputGrid">
+        <Grid.Col span={5}>
+          {" "}
+          <Input.Wrapper>
+            <Input
+              className="inputSearch"
+              placeholder="Search products"
+              value={search}
+              onChange={e => setSearch(e.target.value.toLowerCase())}
+            />
+          </Input.Wrapper>
+        </Grid.Col>
+        <Grid.Col span={1}>
+          <Button onClick={() => setSearch("")}>Clear</Button>
+        </Grid.Col>
+        <Grid.Col span={1}>
+          <Button
+            leftIcon={<IconBasketFilled />}
+            variant="gradient"
+            gradient={{ from: "#ed6ea0", to: "#ec8c69", deg: 35 }}
+            onClick={() => setOpened(true)}>
+            Store
+          </Button>
+        </Grid.Col>
+      </Grid>
       <SimpleGrid cols={3} spacing="xs" verticalSpacing="xs">
         {filteredItems.map(({ name, price, img, desc }, i) => {
           return (
@@ -85,8 +107,15 @@ function App() {
         })}
       </SimpleGrid>
 
-      <ListItems filterItem={basketItems} />
-      {/*Fitreli arama değerini List companentine gönderir*/}
+      {/* Drawer content  */}
+      <Drawer
+        opened={opened}
+        position="right"
+        onClose={() => setOpened(false)}
+        title="Sepetim">
+        <ListItems filterItem={basketItems} />
+        {/*Fitreli arama değerini List companentine gönderir*/}
+      </Drawer>
     </Container>
   );
 }
