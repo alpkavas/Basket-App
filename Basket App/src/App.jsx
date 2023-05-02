@@ -77,6 +77,7 @@ function App() {
       // Arrayi alıp, idsi eşleşenin index numarısındaki elemanın count'unu 1 arttırıyor.
       let _basketItems = [...basketItems];
       _basketItems[itemIndex].count += 1;
+
       setbasketItems(_basketItems);
     } else {
       setbasketItems([...basketItems, { name, price, count, id }]); // diziye ekleme yapar
