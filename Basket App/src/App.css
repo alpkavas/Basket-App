@@ -2,12 +2,22 @@
   margin-top: 20px;
 }
 
-.Store, .inputSearch{
+.Store{
   margin-top: 25px;
   margin-bottom: 20px;
 }
 
+.inputSearch{
+  width: 619px
+}
+
 .listItem{
   padding-top: 10px;
+}
+.headerInput{
+  display: flex;
+  text-align: center;
+  align-content: center;
+  margin-bottom: 10px;
 }
 

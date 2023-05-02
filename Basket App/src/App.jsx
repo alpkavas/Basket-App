@@ -1,6 +1,6 @@
 import React from "react";
 import { useState } from "react";
-import { Container, SimpleGrid, Input } from "@mantine/core";
+import { Container, SimpleGrid, Input, Button, Group } from "@mantine/core";
 import CardComponent from "./components/Card";
 import ListItems from "./components/List";
 import "./App.css";
@@ -56,13 +56,18 @@ function App() {
   );
   return (
     <Container size="sm" px="xs" className="Store">
-      <Input.Wrapper>
-        <Input
-          className="inputSearch"
-          placeholder="Search products"
-          onChange={e => setSearch(e.target.value.toLowerCase())}
-        />
-      </Input.Wrapper>
+      <Group spacing="xs" className="headerInput" align="end">
+        <Input.Wrapper>
+          <Input
+            className="inputSearch"
+            placeholder="Search products"
+            value={search}
+            onChange={e => setSearch(e.target.value.toLowerCase())}
+          />
+        </Input.Wrapper>
+        <Button onClick={() => setSearch("")}>Clear</Button>
+      </Group>
+
       <SimpleGrid cols={3} spacing="xs" verticalSpacing="xs">
         {filteredItems.map(({ name, price, img, desc }, i) => {
           return (
