@@ -16,12 +16,12 @@ function ListItems({ filterItem }) {
       <td>{name}</td>
       <td>{price}</td>
       <td>{count}</td>
-      <td>{price * count}</td>
+      <td>{price * count} &#8378;</td>
     </tr>
   ));
 
   return (
-    <Table horizontalSpacing="md" striped>
+    <Table horizontalSpacing="xs" striped>
       <thead>
         <tr>
           <th>Name</th>
@@ -31,10 +31,12 @@ function ListItems({ filterItem }) {
         </tr>
       </thead>
       <tbody>{filtredItem}</tbody>
+      <hr />
       <tfoot>
         <tr>
-          <td colSpan="3" />
-          <td>Total: {calcPrice}</td>
+          <td>Total </td>
+          <td colSpan="2" />
+          <td> {calcPrice} &#8378;</td>
         </tr>
       </tfoot>
     </Table>
