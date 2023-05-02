@@ -25,7 +25,7 @@ const CardComponent = ({ name, onAdd, image, price, description }) => {
         mt="md"
         radius="md"
         onClick={onAdd}>
-        Ekle
+        Add
       </Button>
     </Card>
   );

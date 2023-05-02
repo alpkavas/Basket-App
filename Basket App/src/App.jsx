@@ -4,6 +4,7 @@ import {
   Container,
   SimpleGrid,
   Input,
+  Indicator,
   Button,
   Grid,
   Drawer,
@@ -80,15 +81,21 @@ function App() {
         <Grid.Col span={1}>
           <Button onClick={() => setSearch("")}>Clear</Button>
         </Grid.Col>
-        <Grid.Col span={1}>
+        <Indicator
+          position="top-end"
+          size={25}
+          offset={0}
+          withBorder
+          label={basketItems.length}>
           <Button
+            size="md"
             leftIcon={<IconBasketFilled />}
             variant="gradient"
             gradient={{ from: "#ed6ea0", to: "#ec8c69", deg: 35 }}
             onClick={() => setOpened(true)}>
             Store
           </Button>
-        </Grid.Col>
+        </Indicator>
       </Grid>
       <SimpleGrid cols={3} spacing="xs" verticalSpacing="xs">
         {filteredItems.map(({ name, price, img, desc }, i) => {
